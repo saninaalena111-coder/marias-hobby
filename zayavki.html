@@ -66,7 +66,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .how li::before{content:counter(s);width:34px;height:42px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;background:var(--accent-soft);border:1px solid var(--accent);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:600;color:var(--green)}
 .how b{display:block;font-size:15px}
 .how span{font-size:14px;color:var(--muted)}
-.mcards{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:14px}
+.mcards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
 .mcard{display:flex;flex-direction:column;gap:8px;padding:22px;border-radius:22px;background:var(--surface);border:1px solid var(--line);text-decoration:none;color:var(--ink);transition:transform .2s ease,box-shadow .2s ease}
 .mcard:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(33,56,38,.12)}
 .mcard h2{font-family:var(--display);font-weight:600;font-size:20px}
@@ -101,7 +101,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .chips{display:flex;flex-wrap:wrap;gap:6px}
 .chip{min-height:40px;padding:8px 14px;border-radius:999px;border:1px solid #C9D3C2;background:#fff;color:#1C2A1E;font-size:14px;cursor:pointer}
 .chip:hover{border-color:#8DB883}
-.chip[aria-pressed="true"]{background:#E4F0DC;border-color:#5E9752;color:#21471E;font-weight:600;box-shadow:inset 0 -3px 0 #E8B03A}
+.chip[aria-pressed="true"]{background:#E4F0DC;border-color:#5E9752;color:#21471E;font-weight:600}
+.chip[aria-pressed="true"]::before{content:"✓";margin-right:6px;color:#4E8A45;font-weight:700}
 .hint{font-size:13px;color:#56635A}
 .hint b{color:#8A5E00;font-weight:600}
 .stepper{display:flex;align-items:center;gap:8px}
@@ -131,6 +132,55 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .dev span{display:inline-flex;align-items:center;gap:6px;font-size:11px;letter-spacing:.04em;padding:4px 11px;border-radius:999px;border:1px solid #E6D3A0;background:rgba(251,244,226,.85);color:#6A4A06}
 .dev span::before{content:"";width:6px;height:6px;border-radius:50%;background:#4E8A45}
 .dev b{font-weight:600;color:#2F5A2C}
+/* assortment */
+.asm{padding-block:28px 64px;display:flex;flex-direction:column;gap:22px}
+.asm-head{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:flex-end;justify-content:space-between}
+.asm-head h1{font-size:clamp(24px,3.4vw,36px)}
+.asm-head p{color:var(--muted);max-width:44em;margin-top:8px}
+.note-box{background:var(--accent-soft);border:1px solid var(--line2);border-radius:14px;padding:10px 14px;font-size:14px;color:var(--ink)}
+.card-b{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:18px;display:flex;flex-direction:column;gap:14px}
+.card-b>header{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:space-between}
+.card-b h2{font-family:var(--display);font-weight:600;font-size:19px}
+.card-b h2 small{font-family:var(--font);font-weight:400;font-size:14px;color:var(--muted);margin-left:8px}
+.kgroup{display:flex;flex-direction:column;gap:6px}
+.kgroup h3{font-size:14px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;padding-top:6px}
+.arow,.drow{display:grid;align-items:center;gap:8px;padding:8px 10px;border:1px solid var(--line);border-radius:14px;background:var(--bg)}
+.arow{grid-template-columns:150px minmax(0,2.2fr) minmax(0,1fr) 112px 104px 40px}
+.drow{grid-template-columns:150px 170px 150px minmax(0,1fr) 40px}
+.arow.off,.drow.off{opacity:.62}
+.arow input[type=text],.drow input,.drow select,.radd input{min-height:40px;border-radius:10px;border:1px solid var(--line2);background:var(--surface);padding:6px 10px;width:100%;min-width:0}
+.a-num{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted)}
+.a-num input{text-align:right}
+.a-del{width:40px;height:40px;border-radius:10px;border:1px solid var(--line2);background:var(--surface);cursor:pointer;font-size:18px;color:var(--muted)}
+.a-del:hover{color:var(--bad);border-color:var(--bad)}
+.sw{display:inline-flex;align-items:center;gap:8px;cursor:pointer;font-size:13px;user-select:none}
+.sw input{position:absolute;opacity:0;width:1px;height:1px}
+.sw span{width:40px;height:24px;border-radius:999px;background:var(--line2);position:relative;transition:background .15s;flex:none}
+.sw span::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:transform .15s;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.sw input:checked+span{background:#4E8A45}
+.sw input:checked+span::after{transform:translateX(16px)}
+.sw input:focus-visible+span{outline:3px solid var(--accent);outline-offset:2px}
+.kchips{display:flex;flex-wrap:wrap;gap:5px}
+.kchips button{min-height:32px;padding:4px 10px;border-radius:999px;border:1px solid var(--line2);background:var(--surface);font-size:13px;cursor:pointer}
+.kchips button[aria-pressed="true"]{background:var(--ok-bg);border-color:#5E9752;color:var(--ok);font-weight:600}
+.add-row{align-self:flex-start;min-height:38px;padding:6px 14px;border-radius:999px;border:1px dashed var(--line2);background:transparent;cursor:pointer;font-weight:500;color:var(--ink)}
+.add-row:hover{border-color:#5E9752}
+.rcols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.rcol{border:1px solid var(--line);border-radius:16px;background:var(--bg);padding:14px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.rcol h3{font-family:var(--display);font-weight:600;font-size:16px;display:flex;justify-content:space-between;gap:8px}
+.rcol h3 span{font-family:var(--font);font-weight:400;font-size:13px;color:var(--muted)}
+.rchips{display:flex;flex-wrap:wrap;gap:6px}
+.rchip{display:inline-flex;align-items:center;gap:2px;padding:3px 4px 3px 11px;border-radius:999px;background:var(--surface);border:1px solid var(--line2);font-size:13px}
+.rchip button{width:26px;height:26px;border:0;background:transparent;border-radius:50%;cursor:pointer;color:var(--muted);font-size:15px}
+.rchip button:hover{background:var(--bad-bg);color:var(--bad)}
+.radd{display:flex;gap:6px}
+.radd button{flex:none}
+.colhead{display:grid;gap:8px;padding:0 10px;font-size:12px;color:var(--muted)}
+.colhead.a{grid-template-columns:150px minmax(0,2.2fr) minmax(0,1fr) 112px 104px 40px}
+.colhead.d{grid-template-columns:150px 170px 150px minmax(0,1fr) 40px}
+@media (max-width:900px){.colhead{display:none}.arow{grid-template-columns:repeat(3,minmax(0,1fr))}.arow .a-name{grid-column:1/-1;order:-1}.arow .a-num span{display:none}.arow .sw{grid-column:1/3;order:2}.arow .a-del,.drow .a-del{order:3;justify-self:end}.drow{grid-template-columns:repeat(2,minmax(0,1fr))}.drow .kchips{grid-column:1/-1;order:1}.drow .sw{order:2}.rcols{grid-template-columns:minmax(0,1fr)}}
+.arow .a-num input[data-f=p]::placeholder{font-size:12px}
+
 /* cabinet */
 .cab{padding-block:28px 64px;display:flex;flex-direction:column;gap:18px}
 .cab-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px}
@@ -215,6 +265,7 @@ td small{display:block;color:var(--muted);font-size:12px}
 @keyframes flash{0%{background:var(--accent-soft)}100%{background:transparent}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 @media (max-width:1100px){.filters{grid-template-columns:repeat(3,minmax(0,1fr))}.filters label:first-child{grid-column:1/-1}.grid{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:1100px){.mcards{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:860px){.menu-hero{grid-template-columns:minmax(0,1fr)}.mcards{grid-template-columns:minmax(0,1fr)}.client{grid-template-columns:minmax(0,1fr);gap:28px}.client .phone{max-width:440px;width:100%;margin:0 auto}.side{order:-1;padding-top:0}.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.notif{grid-template-columns:minmax(0,1fr)}.entry{grid-template-columns:minmax(0,1fr)}}
 @media (max-width:520px){.phone{padding:0;background:none;box-shadow:none}.app{border-radius:20px}.filters{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.proto{display:none}}
 </style>
@@ -244,7 +295,7 @@ td small{display:block;color:var(--muted);font-size:12px}
 </div>
 <ol class="how">
 <li><span><b>Клиент открывает форму</b><span>Кнопка «Записаться» в боте Telegram или MAX, ссылка в объявлении на Авито или ВКонтакте.</span></span></li>
-<li><span><b>Заполняет и отправляет</b><span>Птица, порода, количество, поставка, регион, телефон. Точка отгрузки определяется сама.</span></span></li>
+<li><span><b>Заполняет и отправляет</b><span>Яйцо или цыплята, порода, количество, поставка, регион, телефон. Точка отгрузки определяется сама.</span></span></li>
 <li><span><b>Менеджер получает заявку</b><span>Уведомление в MAX, заявка в кабинете с фильтрами, сводка «сколько яиц заказать».</span></span></li>
 </ol>
 </div>
@@ -252,6 +303,7 @@ td small{display:block;color:var(--muted);font-size:12px}
 <a class="mcard main" href="#zayavka"><h2>Форма клиента</h2><p>Как форму увидит покупатель на телефоне. Можно заполнить и отправить тестовую заявку.</p><span class="go">Открыть форму →</span></a>
 <a class="mcard" href="#kabinet"><h2>Кабинет заявок</h2><p>Фильтры по точкам, регионам и породам, статусы, заметки, выгрузка в Excel.</p><span class="go">Открыть кабинет →</span></a>
 <a class="mcard" href="#uvedomleniya"><h2>Уведомления</h2><p>Что приходит менеджеру о новой заявке и что получает клиент.</p><span class="go">Посмотреть →</span></a>
+<a class="mcard" href="#assortiment"><h2>Ассортимент и регионы</h2><p>Менеджер сам включает и выключает породы, меняет цены, даты поставок и регионы точек.</p><span class="go">Открыть →</span></a>
 </div>
 <p class="muted" style="font-size:14px">Цены и породы взяты с сайта Maria’s Hobby&amp;Ko. Даты поставок и заявки в прототипе тестовые.</p>
 <div class="dev"><span>Разработчик: <b>Санина Диджитал</b></span></div>
@@ -269,10 +321,11 @@ td small{display:block;color:var(--muted);font-size:12px}
 <div class="fbody">
 <div class="fcard">
 <form id="orderForm" novalidate style="display:flex;flex-direction:column;gap:16px">
-<h2>Запишитесь на поставку <em>инкубационного яйца</em></h2>
+<h2>Запишитесь на поставку <em id="formWhat">инкубационного яйца</em></h2>
+<div class="fld"><span class="lbl" id="lb-type">Что нужно</span><div class="chips" id="types" role="group" aria-labelledby="lb-type"></div></div>
 <div class="fld"><span class="lbl" id="lb-kind">Какая птица</span><div class="chips" id="kinds" role="group" aria-labelledby="lb-kind"></div></div>
 <div class="fld"><label for="breed">Порода или кросс</label><select id="breed"></select><span class="hint" id="breedHint"></span></div>
-<div class="fld"><label for="qty">Сколько яиц</label>
+<div class="fld"><label for="qty" id="qtyLbl">Сколько яиц</label>
 <div class="stepper"><button type="button" id="qMinus" aria-label="Меньше">−</button><input id="qty" type="text" inputmode="numeric" value="60"><button type="button" id="qPlus" aria-label="Больше">+</button></div>
 <span class="hint" id="qtyHint"></span></div>
 <div class="fld"><label for="delivery">Поставка</label><select id="delivery"></select></div>
@@ -292,7 +345,7 @@ td small{display:block;color:var(--muted);font-size:12px}
 </form>
 <div class="done" id="done" hidden></div>
 </div>
-<p class="ffoot">Maria’s Hobby&amp;Ko · инкубационное яйцо из России и Европы · документы «Меркурий»</p>
+<p class="ffoot">Maria’s Hobby&amp;Ko · инкубационное яйцо и суточные цыплята · документы «Меркурий»</p>
 <div class="dev"><span>Разработчик: <b>Санина Диджитал</b></span></div>
 </div>
 </section>
@@ -330,6 +383,34 @@ td small{display:block;color:var(--muted);font-size:12px}
 <p class="muted" style="font-size:13px">Выгрузка сохраняет файл, который открывается в Excel и Google Таблицах. Сброс тестовых данных: <button class="btn" id="resetData" type="button" style="min-height:32px;padding:4px 12px;font-size:13px">вернуть примеры</button></p>
 </section>
 
+<!-- ASSORTMENT -->
+<section class="wrap asm" data-view="assortiment" hidden>
+<div class="asm-head">
+<div><h1 class="display">Ассортимент и регионы</h1>
+<p>Всё, что здесь меняет менеджер, сразу видно клиенту в форме: выключенная порода пропадает из списка, закрытая поставка не предлагается, новый регион появляется в выборе.</p></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn" href="#zayavka" style="text-decoration:none;display:inline-flex;align-items:center">Проверить в форме →</a><button class="btn" type="button" id="asmReset">Вернуть исходные</button></div>
+</div>
+<p class="note-box">Прототип: изменения сохраняются только в этом браузере. В рабочей версии раздел будет за логином менеджера, а данные на сервере. Цыплята сейчас для примера, заменим на реальный ассортимент.</p>
+
+<div class="card-b">
+<header><h2>Ассортимент<small id="asmCount"></small></h2><div class="seg" id="asmType" role="group" aria-label="Тип товара"></div></header>
+<div class="colhead a"><span>Наличие</span><span>Название</span><span>Происхождение</span><span>Цена, ₽/шт</span><span>Мин. заказ</span><span></span></div>
+<div id="asmItems" style="display:flex;flex-direction:column;gap:8px"></div>
+</div>
+
+<div class="card-b">
+<header><h2>Поставки<small>даты, на которые клиент может записаться</small></h2><button class="btn primary" type="button" id="addDel">+ Добавить поставку</button></header>
+<div class="colhead d"><span>Приём заявок</span><span>Дата</span><span>Что привозим</span><span>Какая птица</span><span></span></div>
+<div id="asmDels" style="display:flex;flex-direction:column;gap:8px"></div>
+</div>
+
+<div class="card-b">
+<header><h2>Регионы и точки<small>куда падает заявка</small></h2></header>
+<p class="muted" style="font-size:14px">Клиент выбирает регион, и заявка уходит менеджеру этой точки. Если добавить регион, который уже есть у другой точки, он переедет сюда.</p>
+<div class="rcols" id="asmRegs"></div>
+</div>
+</section>
+
 <!-- NOTIFICATIONS -->
 <section class="wrap notif" data-view="uvedomleniya" hidden>
 <h1 class="display">Уведомления: менеджеру и клиенту</h1>
@@ -355,36 +436,54 @@ function fmt(n){return Number(n).toLocaleString('ru-RU')}
 
 var KINDS=[{id:'turkey',l:'Индейка'},{id:'broiler',l:'Бройлер'},{id:'layer',l:'Несушка и порода'},{id:'water',l:'Утка и гусь'},{id:'quail',l:'Перепел'}];
 var BREEDS=[
-{id:'bsh',k:'turkey',n:'Белая широкогрудая',o:'Россия',p:130,m:20},
-{id:'bronze',k:'turkey',n:'Бронзовая Северокавказская',o:'Россия',m:20},
-{id:'big6',k:'turkey',n:'BIG-6',o:'Европа',m:20},
-{id:'smena',k:'broiler',n:'Смена 9',o:'Россия',p:42,m:30},
-{id:'ross',k:'broiler',n:'Росс 308 / Кобб 500',o:'Европа',m:30},
-{id:'griz',k:'broiler',n:'Гриз Бар',o:'Европа',m:30},
-{id:'master',k:'broiler',n:'Мастер Грей',o:'Европа',m:30},
-{id:'domin',k:'layer',n:'Доминант Д-229',o:'Россия',p:24,m:360},
-{id:'loman',k:'layer',n:'Ломан Браун',o:'Россия',m:30},
-{id:'plym',k:'layer',n:'Плимутрок полосатый',o:'Россия',p:40,m:30},
-{id:'hohl',k:'layer',n:'Русская хохлатая',o:'Россия',m:30},
-{id:'star',k:'water',n:'Утка STAR-53',o:'Россия',m:20},
-{id:'mulard',k:'water',n:'Утка Мулард',o:'Франция',m:20},
-{id:'linda',k:'water',n:'Гусь Линда',o:'Россия',m:20},
-{id:'texas',k:'quail',n:'Перепел Техасец утяжелённый',o:'Россия',m:30}];
+{id:'bsh',t:'egg',k:'turkey',n:'Белая широкогрудая',o:'Россия',p:130,m:20},
+{id:'bronze',t:'egg',k:'turkey',n:'Бронзовая Северокавказская',o:'Россия',m:20},
+{id:'big6',t:'egg',k:'turkey',n:'BIG-6',o:'Европа',m:20},
+{id:'smena',t:'egg',k:'broiler',n:'Смена 9',o:'Россия',p:42,m:30},
+{id:'ross',t:'egg',k:'broiler',n:'Росс 308 / Кобб 500',o:'Европа',m:30},
+{id:'griz',t:'egg',k:'broiler',n:'Гриз Бар',o:'Европа',m:30},
+{id:'master',t:'egg',k:'broiler',n:'Мастер Грей',o:'Европа',m:30},
+{id:'domin',t:'egg',k:'layer',n:'Доминант Д-229',o:'Россия',p:24,m:360},
+{id:'loman',t:'egg',k:'layer',n:'Ломан Браун',o:'Россия',m:30},
+{id:'plym',t:'egg',k:'layer',n:'Плимутрок полосатый',o:'Россия',p:40,m:30},
+{id:'hohl',t:'egg',k:'layer',n:'Русская хохлатая',o:'Россия',m:30},
+{id:'star',t:'egg',k:'water',n:'Утка STAR-53',o:'Россия',m:20},
+{id:'mulard',t:'egg',k:'water',n:'Утка Мулард',o:'Франция',m:20},
+{id:'linda',t:'egg',k:'water',n:'Гусь Линда',o:'Россия',m:20},
+{id:'texas',t:'egg',k:'quail',n:'Перепел Техасец утяжелённый',o:'Россия',m:30},
+{id:'c_ross',t:'chick',k:'broiler',n:'Бройлер Росс 308',o:'Европа',m:20},
+{id:'c_cobb',t:'chick',k:'broiler',n:'Бройлер Кобб 500',o:'Европа',m:20},
+{id:'c_big6',t:'chick',k:'turkey',n:'Индюшата BIG-6',o:'Европа',m:10},
+{id:'c_bsh',t:'chick',k:'turkey',n:'Индюшата Белая широкогрудая',o:'Россия',m:10},
+{id:'c_domin',t:'chick',k:'layer',n:'Несушка Доминант',o:'Россия',m:20},
+{id:'c_mulard',t:'chick',k:'water',n:'Утята Мулард',o:'Франция',m:10}];
 var DELS=[
-{id:'b1',k:['broiler'],d:'2026-11-24',l:'24 ноября',s:'24 нояб.'},
-{id:'b2',k:['broiler','layer'],d:'2026-12-01',l:'1 декабря',s:'1 дек.'},
-{id:'b3',k:['broiler','layer','quail'],d:'2026-12-08',l:'8 декабря',s:'8 дек.'},
-{id:'w1',k:['water','quail'],d:'2026-12-15',l:'15 декабря',s:'15 дек.'},
-{id:'t1',k:['turkey'],d:'2027-02-09',l:'9 февраля',s:'9 фев. 27'},
-{id:'t2',k:['turkey'],d:'2027-02-23',l:'23 февраля',s:'23 фев. 27'},
-{id:'t3',k:['turkey','water'],d:'2027-03-09',l:'9 марта',s:'9 мар. 27'}];
+{id:'b1',t:'egg',k:['broiler'],d:'2026-11-24'},
+{id:'b2',t:'egg',k:['broiler','layer'],d:'2026-12-01'},
+{id:'b3',t:'egg',k:['broiler','layer','quail'],d:'2026-12-08'},
+{id:'w1',t:'egg',k:['water','quail'],d:'2026-12-15'},
+{id:'t1',t:'egg',k:['turkey'],d:'2027-02-09'},
+{id:'t2',t:'egg',k:['turkey'],d:'2027-02-23'},
+{id:'t3',t:'egg',k:['turkey','water'],d:'2027-03-09'},
+{id:'c1',t:'chick',k:['broiler','layer'],d:'2026-12-03'},
+{id:'c2',t:'chick',k:['broiler','water'],d:'2026-12-17'},
+{id:'c3',t:'chick',k:['turkey'],d:'2027-03-16'}];
 var POINTS=[{id:'msk',l:'Москва'},{id:'sochi',l:'Сочи'},{id:'ekb',l:'Екатеринбург'}];
 var REG={
 msk:['Москва и область','Санкт-Петербург и Ленинградская обл.','Тверская обл.','Тульская обл.','Калужская обл.','Владимирская обл.','Ярославская обл.','Рязанская обл.','Воронежская обл.','Белгородская обл.','Нижегородская обл.','Самарская обл.','Саратовская обл.','Пензенская обл.'],
 sochi:['Краснодарский край','Республика Адыгея','Ставропольский край','Ростовская обл.','Волгоградская обл.','Республика Крым','Кабардино-Балкария','Республика Дагестан','Абхазия'],
 ekb:['Свердловская обл.','Челябинская обл.','Тюменская обл.','Курганская обл.','Пермский край','Башкортостан','Оренбургская обл.','ХМАО — Югра','Омская обл.','Новосибирская обл.','Казахстан']};
-var REG2P={};POINTS.forEach(function(p){REG[p.id].forEach(function(r){REG2P[r]=p.id})});
-var ALLREG=Object.keys(REG2P).sort(function(a,b){return a.localeCompare(b,'ru')});
+var TYPES=[{id:'egg',l:'Инкубационное яйцо'},{id:'chick',l:'Суточные цыплята'}];
+var MG=['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'],MS=['янв.','фев.','мар.','апр.','мая','июн.','июл.','авг.','сент.','окт.','нояб.','дек.'];
+function mkDel(d){var y=+d.d.slice(0,4),m=+d.d.slice(5,7)-1,day=+d.d.slice(8,10);d.l=day+' '+MG[m]+(y>2026?' '+y:'');d.s=day+' '+MS[m]+(y>2026?' '+String(y).slice(2):'')+(d.t==='chick'?' · цыпл.':'')}
+var CAT_KEY='mh-catalog-v1';
+var DEF=JSON.stringify({b:BREEDS,d:DELS,r:REG});
+function applyCat(c){BREEDS=c.b;DELS=c.d;REG=c.r;BREEDS.forEach(function(b){if(b.on===undefined)b.on=true;if(!b.t)b.t='egg'});DELS.forEach(function(d){if(d.on===undefined)d.on=true;if(!d.t)d.t='egg';mkDel(d)})}
+try{var cs=JSON.parse(localStorage.getItem(CAT_KEY)||'null');if(cs&&cs.b&&cs.d&&cs.r)applyCat(cs);else applyCat(JSON.parse(DEF))}catch(e){applyCat(JSON.parse(DEF))}
+function saveCat(){try{localStorage.setItem(CAT_KEY,JSON.stringify({b:BREEDS,d:DELS,r:REG}))}catch(e){}}
+var REG2P,ALLREG;
+function rebuildReg(){REG2P={};POINTS.forEach(function(p){REG[p.id].forEach(function(r){REG2P[r]=p.id})});ALLREG=Object.keys(REG2P).sort(function(a,b){return a.localeCompare(b,'ru')})}
+rebuildReg();
 var STAT=[{id:'new',l:'Новая',c:'s-new'},{id:'work',l:'В работе',c:'s-work'},{id:'conf',l:'Подтверждена',c:'s-conf'},{id:'paid',l:'Оплачена',c:'s-paid'},{id:'ship',l:'Отгружена',c:'s-ship'},{id:'cancel',l:'Отказ',c:'s-cancel'}];
 var SRC={tg:'Telegram',max:'MAX',avito:'Ссылка с Авито',site:'Ссылка с сайта'};
 var CH={tg:'Telegram',max:'MAX',wa:'WhatsApp',call:'звонок по телефону'};
@@ -413,28 +512,35 @@ var SEED=[
 [1059,'2026-11-13 17:40','Юлия','+7 912 ··· ··-72','Пермский край','Кунгур','hohl',30,'b3','site','wa','tk','work','',[]],
 [1060,'2026-11-14 08:21','Камила','+7 917 ··· ··-33','Самарская обл.','Сызрань','bsh',40,'t3','tg','tg','tk','new','',[]],
 [1061,'2026-11-14 10:10','Артём','+7 961 ··· ··-58','Волгоградская обл.','Камышин','mulard',30,'t3','max','max','tk','new','',[]],
-[1062,'2026-11-14 11:34','Людмила','+7 950 ··· ··-24','Свердловская обл.','Ревда','smena',60,'b2','avito','call','pick','new','',[]]];
+[1062,'2026-11-14 11:34','Людмила','+7 950 ··· ··-24','Свердловская обл.','Ревда','smena',60,'b2','avito','call','pick','new','',[]],
+[1063,'2026-11-14 12:05','Валентина','+7 927 ··· ··-15','Самарская обл.','Тольятти','c_ross',50,'c1','max','max','pick','new','',[]],
+[1064,'2026-11-14 12:40','Тимур','+7 928 ··· ··-62','Краснодарский край','Кореновск','c_big6',30,'c3','avito','call','tk','new','Индюшат нужно к весне, первый раз',[]]];
 function seed(){return SEED.map(function(r){return{no:r[0],at:r[1],name:r[2],phone:r[3],region:r[4],city:r[5],breed:r[6],qty:r[7],del:r[8],src:r[9],ch:r[10],get:r[11],st:r[12],comment:r[13],notes:r[14].map(function(n){return{t:n[0],d:n[1]}}),demo:true}})}
-var KEY='mh-orders-v1',orders;
+var KEY='mh-orders-v2',orders;
 try{orders=JSON.parse(localStorage.getItem(KEY)||'null')}catch(e){orders=null}
 if(!Array.isArray(orders))orders=seed();
 function save(){try{localStorage.setItem(KEY,JSON.stringify(orders))}catch(e){}}
 function pointOf(o){return REG2P[o.region]||'msk'}
 
 /* ---------- client form ---------- */
-var f={kind:'turkey',get:'tk',ch:'max'};
-function renderChips(el,list,cur,attr){el.innerHTML=list.map(function(x){return'<button type="button" class="chip" data-'+attr+'="'+x.id+'" aria-pressed="'+(x.id===cur)+'">'+x.l+'</button>'}).join('')}
-function fillBreeds(){var bs=BREEDS.filter(function(b){return b.k===f.kind});$('breed').innerHTML=bs.map(function(b){return'<option value="'+b.id+'">'+b.n+' · '+b.o+'</option>'}).join('');fillDel();breedHint()}
-function fillDel(){var ds=DELS.filter(function(d){return d.k.indexOf(f.kind)>-1});$('delivery').innerHTML=ds.map(function(d){return'<option value="'+d.id+'">'+d.l+(d.d>'2027'?' 2027':'')+'</option>'}).join('')+'<option value="">Ближайшая, подскажет менеджер</option>'}
-function breedHint(){var b=byId(BREEDS,$('breed').value);if(!b)return;$('breedHint').innerHTML=(b.p?'Цена <b>от '+b.p+' ₽ за яйцо</b>. ':'Цену на вашу дату назовёт менеджер. ')+'Заказ от <b>'+b.m+' шт</b>.';qtyHint()}
-function qtyHint(){var b=byId(BREEDS,$('breed').value),q=parseInt($('qty').value,10)||0;var h='Выведется примерно '+Math.round(q*0.7)+' птенцов, если брать 70% вывода.';if(b&&q<b.m)h='Меньше минимального заказа ('+b.m+' шт). Можно добавить вас в совместную поставку по региону.';$('qtyHint').textContent=h}
+var f={type:'egg',kind:'turkey',get:'tk',ch:'max'};
+function avail(){return BREEDS.filter(function(b){return b.on&&!b.gone})}
+function renderChips(el,list,cur,attr){el.innerHTML=list.map(function(x){return'<button type="button" class="chip" data-'+attr+'="'+x.id+'" aria-pressed="'+(x.id===cur)+'">'+esc(x.l)+'</button>'}).join('')}
+function renderTypes(){var ts=TYPES.filter(function(x){return avail().some(function(b){return b.t===x.id})});if(!ts.length)ts=[TYPES[0]];if(!byId(ts,f.type))f.type=ts[0].id;renderChips($('types'),ts,f.type,'type');$('types').parentNode.hidden=ts.length<2;
+  $('formWhat').textContent=f.type==='chick'?'суточных цыплят':'инкубационного яйца';$('qtyLbl').textContent=f.type==='chick'?'Сколько цыплят':'Сколько яиц'}
+function renderKinds(){var ks=KINDS.filter(function(k){return avail().some(function(b){return b.t===f.type&&b.k===k.id})});if(ks.length&&!byId(ks,f.kind))f.kind=ks[0].id;renderChips($('kinds'),ks,f.kind,'kind')}
+function fillBreeds(){var cur=$('breed').value,bs=avail().filter(function(b){return b.t===f.type&&b.k===f.kind});$('breed').innerHTML=bs.map(function(b){return'<option value="'+esc(b.id)+'">'+esc(b.n)+(b.o?' · '+esc(b.o):'')+'</option>'}).join('');if(byId(bs,cur))$('breed').value=cur;fillDel();breedHint()}
+function fillDel(){var cur=$('delivery').value,ds=DELS.filter(function(d){return d.on&&!d.gone&&d.t===f.type&&d.k.indexOf(f.kind)>-1}).sort(function(a,b){return a.d<b.d?-1:1});$('delivery').innerHTML=ds.map(function(d){return'<option value="'+esc(d.id)+'">'+esc(d.l)+'</option>'}).join('')+'<option value="">Ближайшая, подскажет менеджер</option>';if(byId(ds,cur))$('delivery').value=cur}
+function breedHint(){var b=byId(BREEDS,$('breed').value);if(!b){$('breedHint').textContent='';return}$('breedHint').innerHTML=(b.p?'Цена <b>от '+b.p+' ₽ за '+(b.t==='chick'?'голову':'яйцо')+'</b>. ':'Цену на вашу дату назовёт менеджер. ')+'Заказ от <b>'+b.m+' шт</b>.';qtyHint()}
+function qtyHint(){var b=byId(BREEDS,$('breed').value),q=parseInt($('qty').value,10)||0;var h=f.type==='chick'?'':'Выведется примерно '+Math.round(q*0.7)+' птенцов, если брать 70% вывода.';if(b&&q<b.m)h='Меньше минимального заказа ('+b.m+' шт). Можно добавить вас в совместную поставку по региону.';$('qtyHint').textContent=h;$('qtyHint').hidden=!h}
 function pointInfo(){var p=byId(POINTS,REG2P[$('region').value]);$('pointInfo').innerHTML='Ближайшая точка отгрузки: <b>'+(p?p.l:'—')+'</b>'}
-renderChips($('kinds'),KINDS,f.kind,'kind');
+function fillRegions(){var cur=$('region').value;$('region').innerHTML='<option value="">Выберите регион</option>'+ALLREG.map(function(r){return'<option>'+esc(r)+'</option>'}).join('');if(ALLREG.indexOf(cur)>-1)$('region').value=cur;pointInfo()}
+function refreshForm(){renderTypes();renderKinds();fillBreeds();fillRegions()}
 renderChips($('getWay'),[{id:'tk',l:'Отправка ТК или автобусом'},{id:'pick',l:'Самовывоз'}],f.get,'get');
 renderChips($('channel'),[{id:'max',l:'Написать в MAX'},{id:'call',l:'Позвонить'}],f.ch,'ch');
-$('region').innerHTML='<option value="">Выберите регион</option>'+ALLREG.map(function(r){return'<option>'+r+'</option>'}).join('');
-fillBreeds();pointInfo();
-$('kinds').addEventListener('click',function(e){var b=e.target.closest('[data-kind]');if(!b)return;f.kind=b.dataset.kind;renderChips($('kinds'),KINDS,f.kind,'kind');fillBreeds()});
+refreshForm();
+$('types').addEventListener('click',function(e){var b=e.target.closest('[data-type]');if(!b)return;f.type=b.dataset.type;renderTypes();renderKinds();fillBreeds()});
+$('kinds').addEventListener('click',function(e){var b=e.target.closest('[data-kind]');if(!b)return;f.kind=b.dataset.kind;renderKinds();fillBreeds()});
 $('getWay').addEventListener('click',function(e){var b=e.target.closest('[data-get]');if(!b)return;f.get=b.dataset.get;renderChips($('getWay'),[{id:'tk',l:'Отправка ТК или автобусом'},{id:'pick',l:'Самовывоз'}],f.get,'get')});
 $('channel').addEventListener('click',function(e){var b=e.target.closest('[data-ch]');if(!b)return;f.ch=b.dataset.ch;renderChips($('channel'),[{id:'max',l:'Написать в MAX'},{id:'call',l:'Позвонить'}],f.ch,'ch')});
 $('breed').addEventListener('change',breedHint);
@@ -447,6 +553,7 @@ $('orderForm').addEventListener('submit',function(e){
   e.preventDefault();
   var errs=[],q=parseInt($('qty').value,10)||0,ph=$('phone').value.replace(/\D/g,'');
   if(q<1)errs.push('укажите количество');
+  if(!$('breed').value)errs.push('выберите породу');
   if(!$('region').value)errs.push('выберите регион');
   if(!$('name').value.trim())errs.push('напишите имя');
   if(ph.length<10)errs.push('проверьте телефон');
@@ -461,14 +568,14 @@ $('orderForm').addEventListener('submit',function(e){
   setTimeout(function(){sb.disabled=false;sb.textContent='Отправить заявку';showDone(o)},900);
 });
 function delShort(id){var d=byId(DELS,id);return d?d.s:'ближайшая'}
-function delLabel(id){var d=byId(DELS,id);return d?d.l+(d.d>'2027'?' 2027':''):'ближайшая'}
+function delLabel(id){var d=byId(DELS,id);return d?d.l+(d.t==='chick'?', цыплята':''):'ближайшая'}
 function showDone(o){
   var b=byId(BREEDS,o.breed),p=byId(POINTS,pointOf(o));
   $('orderForm').hidden=true;var d=$('done');d.hidden=false;
   d.innerHTML='<div class="egg">№'+o.no+'</div><h2>Заявка принята</h2><p>Менеджер точки '+esc(p.l)+(o.ch==='call'?' позвонит вам':' напишет вам в MAX')+' в течение рабочего дня.</p>'+
-  '<div class="card"><span>'+esc(b.n)+' — <b>'+fmt(o.qty)+' шт</b></span><span>Поставка: '+esc(delLabel(o.del))+'</span><span>'+esc(o.region)+(o.city?', '+esc(o.city):'')+'</span></div>'+
+  '<div class="card"><span>'+esc(b.n)+' — <b>'+fmt(o.qty)+' шт</b></span><span>Поставка: '+esc((byId(DELS,o.del)||{l:'ближайшая, подскажет менеджер'}).l)+'</span><span>'+esc(o.region)+(o.city?', '+esc(o.city):'')+'</span></div>'+
   '<button class="ghost" type="button" id="again">Оформить ещё одну заявку</button><p class="proto-note">Это прототип: заявка уже лежит в <a href="#kabinet">кабинете</a> и в <a href="#uvedomleniya">уведомлениях</a>.</p>';
-  $('again').addEventListener('click',function(){d.hidden=true;$('orderForm').hidden=false;window.scrollTo(0,0);$('orderForm').reset();$('qty').value=60;fillBreeds();pointInfo()});
+  $('again').addEventListener('click',function(){d.hidden=true;$('orderForm').hidden=false;window.scrollTo(0,0);$('orderForm').reset();$('qty').value=60;refreshForm()});
   renderAll();
 }
 
@@ -476,11 +583,11 @@ function showDone(o){
 var flt={point:'all',q:'',kind:'',breed:'',del:'',reg:'',st:'',src:''},sel=null,lastNew=null;
 function opt(list,lab){return'<option value="">'+lab+'</option>'+list.map(function(x){return'<option value="'+esc(x.id)+'">'+esc(x.l)+'</option>'}).join('')}
 $('fkind').innerHTML=opt(KINDS,'Все');
-$('fdel').innerHTML=opt(DELS.map(function(d){return{id:d.id,l:delLabel(d.id)}}),'Все');
-$('freg').innerHTML=opt(ALLREG.map(function(r){return{id:r,l:r}}),'Все');
+function fillFOpts(){$('fdel').innerHTML=opt(DELS.filter(function(d){return!d.gone}).sort(function(a,b){return a.d<b.d?-1:1}).map(function(d){return{id:d.id,l:delLabel(d.id)}}),'Все');$('fdel').value=flt.del;$('freg').innerHTML=opt(ALLREG.map(function(r){return{id:r,l:r}}),'Все');$('freg').value=flt.reg}
+fillFOpts();
 $('fstat').innerHTML=opt(STAT,'Все');
 $('fsrc').innerHTML=opt(Object.keys(SRC).map(function(k){return{id:k,l:SRC[k]}}),'Все');
-function fillFBreed(){var bs=BREEDS.filter(function(b){return!flt.kind||b.k===flt.kind});$('fbreed').innerHTML=opt(bs.map(function(b){return{id:b.id,l:b.n}}),'Все');$('fbreed').value=flt.breed}
+function fillFBreed(){var bs=BREEDS.filter(function(b){return!b.gone&&(!flt.kind||b.k===flt.kind)});$('fbreed').innerHTML=opt(bs.map(function(b){return{id:b.id,l:b.n+(b.t==='chick'?' · цыплята':'')}}),'Все');$('fbreed').value=flt.breed}
 fillFBreed();
 function match(o,ignorePoint){
   var b=byId(BREEDS,o.breed)||{};
@@ -503,11 +610,11 @@ function renderKpis(list){
   var eggs=live.reduce(function(s,o){return s+o.qty},0);
   var week=list.filter(function(o){return o.at>='2026-11-08'}).length;
   var nw=list.filter(function(o){return o.st==='new'}).length;
-  $('kpis').innerHTML=[['Новые, ждут ответа',nw],['Яиц в заявках',fmt(eggs)],['Заявок за неделю',week],['Средний заказ, шт',live.length?fmt(Math.round(eggs/live.length)):'—']].map(function(k){return'<div class="kpi"><span>'+k[0]+'</span><b>'+k[1]+'</b></div>'}).join('')}
+  $('kpis').innerHTML=[['Новые, ждут ответа',nw],['Штук в заявках',fmt(eggs)],['Заявок за неделю',week],['Средний заказ, шт',live.length?fmt(Math.round(eggs/live.length)):'—']].map(function(k){return'<div class="kpi"><span>'+k[0]+'</span><b>'+k[1]+'</b></div>'}).join('')}
 function renderRows(list){
   if(!list.length){$('rows').innerHTML='<tr><td colspan="8" class="empty">По этим фильтрам заявок нет. Сбросьте фильтры или выберите другую точку.</td></tr>';return}
   $('rows').innerHTML=list.map(function(o){var b=byId(BREEDS,o.breed)||{n:o.breed},p=byId(POINTS,pointOf(o));
-  return'<tr data-no="'+o.no+'" aria-selected="'+(sel===o.no)+'"'+(o.no===lastNew?' class="fresh"':'')+' tabindex="0"><td class="num"><b>'+o.no+'</b><small>'+esc(SRC[o.src])+'</small></td><td class="num">'+esc(o.at.slice(8,10)+'.'+o.at.slice(5,7))+'<small>'+esc(o.at.slice(11))+'</small></td><td>'+esc(o.name)+'<small>'+esc(CH[o.ch])+'</small></td><td>'+esc(o.region)+'<small>'+esc(o.city)+'</small></td><td>'+esc(b.n)+'</td><td class="num"><b>'+fmt(o.qty)+'</b></td><td style="white-space:nowrap">'+esc(delShort(o.del))+'<small>'+esc(p.l)+'</small></td><td>'+stPill(o.st)+'</td></tr>'}).join('')}
+  return'<tr data-no="'+o.no+'" aria-selected="'+(sel===o.no)+'"'+(o.no===lastNew?' class="fresh"':'')+' tabindex="0"><td class="num"><b>'+o.no+'</b><small>'+esc(SRC[o.src])+'</small></td><td class="num">'+esc(o.at.slice(8,10)+'.'+o.at.slice(5,7))+'<small>'+esc(o.at.slice(11))+'</small></td><td>'+esc(o.name)+'<small>'+esc(CH[o.ch])+'</small></td><td>'+esc(o.region)+'<small>'+esc(o.city)+'</small></td><td>'+esc(b.n)+(b.t==='chick'?'<small>суточные цыплята</small>':'')+'</td><td class="num"><b>'+fmt(o.qty)+'</b></td><td style="white-space:nowrap">'+esc(delShort(o.del))+'<small>'+esc(p.l)+'</small></td><td>'+stPill(o.st)+'</td></tr>'}).join('')}
 function renderDetail(){
   var o=orders.filter(function(x){return x.no===sel})[0];
   if(!o){$('detail').innerHTML='<div class="detail"><h3>Заявка</h3><p class="muted">Выберите заявку в таблице: здесь появятся контакты, комментарий клиента, статус и ваши заметки.</p></div>';return}
@@ -524,7 +631,7 @@ function renderDetail(){
 }
 function renderSummary(list){
   var live=list.filter(function(o){return o.st!=='cancel'});
-  var dels=DELS.filter(function(d){return live.some(function(o){return o.del===d.id})});
+  var dels=DELS.slice().sort(function(a,b){return a.d<b.d?-1:1}).filter(function(d){return live.some(function(o){return o.del===d.id})});
   var undated=live.filter(function(o){return!byId(DELS,o.del)});
   if(!live.length){$('summary').innerHTML='<p class="empty">Нет заявок для сводки.</p>';return}
   function block(title,items){
@@ -532,8 +639,8 @@ function renderSummary(list){
     var tot={msk:0,sochi:0,ekb:0,n:0};Object.keys(byB).forEach(function(k){['msk','sochi','ekb','n'].forEach(function(p){tot[p]+=byB[k][p]})});
     var max=Math.max.apply(null,Object.keys(byB).map(function(k){var r=byB[k];return r.msk+r.sochi+r.ekb}));
     var all=tot.msk+tot.sochi+tot.ekb;
-    return'<div class="sum-d"><h3>'+title+'<span class="num">'+items.length+' заявок · '+fmt(all)+' яиц</span></h3><div class="tbl"><table><thead><tr><th>Порода</th><th class="n">Москва</th><th class="n">Сочи</th><th class="n">Екатеринбург</th><th class="n">Всего</th></tr></thead><tbody>'+
-    Object.keys(byB).map(function(k){var r=byB[k],s=r.msk+r.sochi+r.ekb,b=byId(BREEDS,k)||{n:k};return'<tr><td>'+esc(b.n)+'<div class="bar" style="width:'+Math.max(4,Math.round(s/max*100))+'%"></div></td><td class="n">'+(r.msk?fmt(r.msk):'—')+'</td><td class="n">'+(r.sochi?fmt(r.sochi):'—')+'</td><td class="n">'+(r.ekb?fmt(r.ekb):'—')+'</td><td class="n"><b>'+fmt(s)+'</b></td></tr>'}).join('')+
+    return'<div class="sum-d"><h3>'+title+'<span class="num">'+items.length+' заявок · '+fmt(all)+' шт</span></h3><div class="tbl"><table><thead><tr><th>Порода</th><th class="n">Москва</th><th class="n">Сочи</th><th class="n">Екатеринбург</th><th class="n">Всего</th></tr></thead><tbody>'+
+    Object.keys(byB).map(function(k){var r=byB[k],s=r.msk+r.sochi+r.ekb,b=byId(BREEDS,k)||{n:k};return'<tr><td>'+esc(b.n)+(b.t==='chick'?' <span class="muted">· цыплята</span>':'')+'<div class="bar" style="width:'+Math.max(4,Math.round(s/max*100))+'%"></div></td><td class="n">'+(r.msk?fmt(r.msk):'—')+'</td><td class="n">'+(r.sochi?fmt(r.sochi):'—')+'</td><td class="n">'+(r.ekb?fmt(r.ekb):'—')+'</td><td class="n"><b>'+fmt(s)+'</b></td></tr>'}).join('')+
     '<tr class="tot"><td>Итого</td><td class="n">'+fmt(tot.msk)+'</td><td class="n">'+fmt(tot.sochi)+'</td><td class="n">'+fmt(tot.ekb)+'</td><td class="n">'+fmt(all)+'</td></tr></tbody></table></div></div>'}
   $('summary').innerHTML=dels.map(function(d){return block('Поставка '+delLabel(d.id),live.filter(function(o){return o.del===d.id}))}).join('')+(undated.length?block('Без даты, подобрать поставку',undated):'')}
 function renderCab(){
@@ -549,8 +656,8 @@ $('rows').addEventListener('keydown',function(e){if(e.key==='Enter'){var tr=e.ta
 $('resetData').addEventListener('click',function(){orders=seed();sel=null;lastNew=null;save();renderAll()});
 $('export').addEventListener('click',function(){
   var list=orders.filter(function(o){return match(o,false)});
-  var head=['№','Дата','Имя','Телефон','Ответить в','Регион','Город','Точка','Птица','Порода','Яиц','Поставка','Получение','Источник','Статус','Комментарий','Заметки'];
-  var rows=list.map(function(o){var b=byId(BREEDS,o.breed)||{};return[o.no,o.at,o.name,o.phone,CH[o.ch],o.region,o.city,byId(POINTS,pointOf(o)).l,(byId(KINDS,b.k)||{}).l,b.n,o.qty,delLabel(o.del),GET[o.get],SRC[o.src],byId(STAT,o.st).l,o.comment,o.notes.map(function(n){return n.d+': '+n.t}).join(' | ')]});
+  var head=['№','Дата','Имя','Телефон','Ответить в','Регион','Город','Точка','Товар','Птица','Порода','Яиц','Поставка','Получение','Источник','Статус','Комментарий','Заметки'];
+  var rows=list.map(function(o){var b=byId(BREEDS,o.breed)||{};return[o.no,o.at,o.name,o.phone,CH[o.ch],o.region,o.city,byId(POINTS,pointOf(o)).l,b.t==='chick'?'Цыплята':'Яйцо',(byId(KINDS,b.k)||{}).l,b.n,o.qty,delLabel(o.del),GET[o.get],SRC[o.src],byId(STAT,o.st).l,o.comment,o.notes.map(function(n){return n.d+': '+n.t}).join(' | ')]});
   var csv='﻿'+[head].concat(rows).map(function(r){return r.map(function(v){v=String(v==null?'':v);return/[;"\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v}).join(';')}).join('\r\n');
   try{var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));a.download='zayavki-marias-hobby.csv';document.body.appendChild(a);a.click();a.remove()}catch(e){}
 });
@@ -562,21 +669,72 @@ function renderNotif(){
   return'<div class="msg"><b>Новая заявка №'+o.no+' · '+esc(p.l)+'</b><br>'+esc(k.l)+', '+esc(b.n)+' — '+fmt(o.qty)+' шт<br>Поставка: '+esc(delLabel(o.del))+'<br>'+esc(o.region)+(o.city?', '+esc(o.city):'')+'<br><span style="color:#56635A">Источник: '+esc(SRC[o.src])+'</span><div class="kb"><span>Открыть в кабинете</span><span>Взять в работу</span></div><time>'+esc(o.at.slice(8,10)+'.'+o.at.slice(5,7)+' '+o.at.slice(11))+'</time></div>'}).join('');
   var o=recent[recent.length-1],b=byId(BREEDS,o.breed)||{n:o.breed},p=byId(POINTS,pointOf(o));
   $('cliMsgs').innerHTML='<div class="msg">Здравствуйте, '+esc(o.name)+'! Заявка <b>№'+o.no+'</b> принята.<br>'+esc(b.n)+' — '+fmt(o.qty)+' шт, поставка '+esc(delLabel(o.del))+'.<br>Менеджер точки '+esc(p.l)+' ответит в течение рабочего дня.<time>'+esc(o.at.slice(11))+'</time></div>'+
-  '<div class="msg">Заявка <b>№'+o.no+'</b> подтверждена. Мы закажем яйцо на вас и напишем за 2 дня до отгрузки, как забрать. Документы «Меркурий» будут в посылке.<div class="kb"><span>Мои заявки</span><span>Написать менеджеру</span></div><time>пример, после подтверждения</time></div>';
+  '<div class="msg">Заявка <b>№'+o.no+'</b> подтверждена. Мы забронируем заказ на вас и напишем за 2 дня до отгрузки, как забрать. Документы «Меркурий» будут в посылке.<div class="kb"><span>Мои заявки</span><span>Написать менеджеру</span></div><time>пример, после подтверждения</time></div>';
   $('mgrPoint').textContent='Telegram или MAX';
 }
 function renderAll(){renderCab();renderNotif()}
 renderAll();
 
+/* ---------- assortment ---------- */
+var asmT='egg';
+function afterCat(){saveCat();rebuildReg();refreshForm();fillFOpts();fillFBreed();renderAll()}
+function sw(on,lab,f){return'<label class="sw"><input type="checkbox" data-f="'+f+'"'+(on?' checked':'')+'><span></span>'+lab+'</label>'}
+function renderAsm(){
+  $('asmType').innerHTML=TYPES.map(function(x){var n=BREEDS.filter(function(b){return!b.gone&&b.t===x.id}).length;return'<button type="button" data-t="'+x.id+'" aria-pressed="'+(asmT===x.id)+'">'+x.l+'<span class="c num">'+n+'</span></button>'}).join('');
+  var on=BREEDS.filter(function(b){return!b.gone&&b.on}).length,all=BREEDS.filter(function(b){return!b.gone}).length;
+  $('asmCount').textContent='в наличии '+on+' из '+all;
+  $('asmItems').innerHTML=KINDS.map(function(k){var it=BREEDS.filter(function(b){return!b.gone&&b.t===asmT&&b.k===k.id});
+    return'<div class="kgroup"><h3>'+esc(k.l)+'</h3>'+it.map(function(b){return'<div class="arow'+(b.on?'':' off')+'" data-id="'+esc(b.id)+'">'+sw(b.on,b.on?'В наличии':'Нет','on')+
+    '<input type="text" class="a-name" data-f="n" value="'+esc(b.n)+'" aria-label="Название">'+
+    '<input type="text" data-f="o" value="'+esc(b.o||'')+'" placeholder="Россия" aria-label="Происхождение">'+
+    '<label class="a-num"><input type="text" inputmode="numeric" data-f="p" value="'+(b.p||'')+'" placeholder="по запросу" aria-label="Цена"></label>'+
+    '<label class="a-num"><span>от</span><input type="text" inputmode="numeric" data-f="m" value="'+(b.m||'')+'" aria-label="Минимальный заказ"></label>'+
+    '<button type="button" class="a-del" data-del aria-label="Удалить '+esc(b.n)+'">×</button></div>'}).join('')+
+    '<button type="button" class="add-row" data-add="'+k.id+'">+ Добавить: '+esc(k.l.toLowerCase())+'</button></div>'}).join('');
+  $('asmDels').innerHTML=DELS.filter(function(d){return!d.gone}).sort(function(a,b){return a.d<b.d?-1:1}).map(function(d){return'<div class="drow'+(d.on?'':' off')+'" data-id="'+esc(d.id)+'">'+sw(d.on,d.on?'Открыт':'Закрыт','on')+
+    '<input type="date" data-f="d" value="'+esc(d.d)+'" aria-label="Дата поставки">'+
+    '<select data-f="t" aria-label="Что привозим">'+TYPES.map(function(x){return'<option value="'+x.id+'"'+(d.t===x.id?' selected':'')+'>'+(x.id==='egg'?'Яйцо':'Цыплята')+'</option>'}).join('')+'</select>'+
+    '<div class="kchips">'+KINDS.map(function(k){return'<button type="button" data-k="'+k.id+'" aria-pressed="'+(d.k.indexOf(k.id)>-1)+'">'+esc(k.l)+'</button>'}).join('')+'</div>'+
+    '<button type="button" class="a-del" data-del aria-label="Удалить поставку">×</button></div>'}).join('')||'<p class="empty">Поставок нет. Добавьте первую.</p>';
+  $('asmRegs').innerHTML=POINTS.map(function(p){return'<div class="rcol" data-p="'+p.id+'"><h3>'+esc(p.l)+'<span>'+REG[p.id].length+' регионов</span></h3><div class="rchips">'+REG[p.id].slice().sort(function(a,b){return a.localeCompare(b,'ru')}).map(function(r){return'<span class="rchip">'+esc(r)+'<button type="button" data-rm="'+esc(r)+'" aria-label="Убрать '+esc(r)+'">×</button></span>'}).join('')+'</div>'+
+    '<form class="radd"><input type="text" placeholder="Например, Тамбовская обл." aria-label="Новый регион для точки '+esc(p.l)+'"><button class="btn" type="submit">Добавить</button></form></div>'}).join('');
+}
+function used(field,id){return orders.some(function(o){return o[field]===id})}
+$('asmType').addEventListener('click',function(e){var b=e.target.closest('[data-t]');if(!b)return;asmT=b.dataset.t;renderAsm()});
+$('asmItems').addEventListener('input',function(e){var el=e.target,row=el.closest('[data-id]');if(!row||!el.dataset.f)return;var b=byId(BREEDS,row.dataset.id),k=el.dataset.f;
+  if(k==='on'){b.on=el.checked;row.classList.toggle('off',!b.on);el.parentNode.lastChild.textContent=b.on?'В наличии':'Нет'}
+  else if(k==='p'||k==='m'){el.value=el.value.replace(/\D/g,'').slice(0,6);var v=parseInt(el.value,10);if(k==='p')b.p=v||undefined;else b.m=v||1}
+  else b[k]=el.value;
+  afterCat();if(k==='on')$('asmCount').textContent='в наличии '+BREEDS.filter(function(x){return!x.gone&&x.on}).length+' из '+BREEDS.filter(function(x){return!x.gone}).length});
+$('asmItems').addEventListener('click',function(e){var a=e.target.closest('[data-add]');
+  if(a){var nb={id:'i'+Date.now(),t:asmT,k:a.dataset.add,n:'Новая позиция',o:'Россия',m:20,on:true};BREEDS.push(nb);afterCat();renderAsm();var inp=document.querySelector('#asmItems [data-id="'+nb.id+'"] .a-name');if(inp){inp.focus();inp.select()}return}
+  var d=e.target.closest('[data-del]');if(!d)return;var id=d.closest('[data-id]').dataset.id,b=byId(BREEDS,id);
+  if(used('breed',id))b.gone=true;else BREEDS.splice(BREEDS.indexOf(b),1);afterCat();renderAsm()});
+$('asmDels').addEventListener('input',function(e){var el=e.target,row=el.closest('[data-id]');if(!row||!el.dataset.f)return;var d=byId(DELS,row.dataset.id),k=el.dataset.f;
+  if(k==='on'){d.on=el.checked;row.classList.toggle('off',!d.on);el.parentNode.lastChild.textContent=d.on?'Открыт':'Закрыт'}
+  else if(k==='d'){if(!/^\d{4}-\d\d-\d\d$/.test(el.value))return;d.d=el.value}
+  else d[k]=el.value;
+  mkDel(d);afterCat()});
+$('asmDels').addEventListener('click',function(e){var row=e.target.closest('[data-id]');if(!row)return;var d=byId(DELS,row.dataset.id);
+  var kb=e.target.closest('[data-k]');if(kb){var i=d.k.indexOf(kb.dataset.k);if(i>-1){if(d.k.length>1)d.k.splice(i,1)}else d.k.push(kb.dataset.k);kb.setAttribute('aria-pressed',d.k.indexOf(kb.dataset.k)>-1);afterCat();return}
+  if(e.target.closest('[data-del]')){if(used('del',d.id))d.gone=true;else DELS.splice(DELS.indexOf(d),1);afterCat();renderAsm()}});
+$('addDel').addEventListener('click',function(){var nd={id:'d'+Date.now(),t:asmT,k:[KINDS[1].id],d:'2026-12-22',on:true};mkDel(nd);DELS.push(nd);afterCat();renderAsm();var inp=document.querySelector('#asmDels [data-id="'+nd.id+'"] input[type=date]');if(inp)inp.focus()});
+$('asmRegs').addEventListener('click',function(e){var b=e.target.closest('[data-rm]');if(!b)return;var p=b.closest('[data-p]').dataset.p,r=b.dataset.rm;REG[p]=REG[p].filter(function(x){return x!==r});afterCat();renderAsm()});
+$('asmRegs').addEventListener('submit',function(e){e.preventDefault();var fm=e.target,inp=fm.querySelector('input'),r=inp.value.trim().replace(/\s+/g,' ');if(!r)return;var p=fm.closest('[data-p]').dataset.p;
+  POINTS.forEach(function(x){REG[x.id]=REG[x.id].filter(function(y){return y.toLowerCase()!==r.toLowerCase()})});REG[p].push(r);afterCat();renderAsm();var ni=document.querySelector('#asmRegs [data-p="'+p+'"] input');if(ni)ni.focus()});
+$('asmReset').addEventListener('click',function(){applyCat(JSON.parse(DEF));afterCat();renderAsm()});
+renderAsm();
+
 /* ---------- routing ---------- */
-var VIEWS=['menu','zayavka','kabinet','uvedomleniya'];
-var TITLES={menu:'сервис заявок на поставки',kabinet:'кабинет заявок',uvedomleniya:'уведомления'};
+var VIEWS=['menu','zayavka','kabinet','uvedomleniya','assortiment'];
+var TITLES={menu:'сервис заявок на поставки',kabinet:'кабинет заявок',uvedomleniya:'уведомления',assortiment:'ассортимент и регионы'};
 function route(){var h=location.hash.slice(1);if(VIEWS.indexOf(h)<0)h='menu';
   document.querySelectorAll('[data-view]').forEach(function(s){s.hidden=s.dataset.view!==h});
   $('top').hidden=h==='zayavka';
   document.querySelector('.bgphoenix').hidden=h==='zayavka';
   $('topBack').hidden=h==='menu';
   $('topTitle').textContent=TITLES[h]||'';
+  if(h==='assortiment')renderAsm();
   if(h==='kabinet'){renderCab();if(lastNew&&!sel){sel=lastNew;renderCab()}}
   window.scrollTo(0,0);parallax()}
 var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches,px=0,py=0,ticking=false;
